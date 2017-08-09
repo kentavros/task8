@@ -26,10 +26,10 @@
 
 <form role="form" class="form-inline text-center" action="index.php" method="post" style="margin-top: 100px; margin-bottom: 100px;">
     <div class="form-group">
-        <input type="text" class="form-control" name="text" />
+        <input type="text" class="form-control" name="search" />
     </div>
     <div class="form-group">
-        <input class="btn btn-success" type="submit" value="Search" />
+        <input class="btn btn-success" type="submit" value="GO" />
     </div>
 </form>
 
