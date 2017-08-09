@@ -12,7 +12,7 @@ class SearchClass
     }
 
 
-    public function getWebPage($search)
+    public function getWebPage() //DOBAVIT PARAM!!!!!!!!
     {
         $headers = array(
             'authority:www.google.com.ua',
@@ -31,7 +31,8 @@ class SearchClass
 
 //       $adress = 'https://www.google.com.ua/search?q='.$search;
 //       $adress = 'https://www.google.com.ua/search?...'.$search;
-        $adress = 'http://search.meta.ua/search.asp?q='.$search;
+//        $adress = 'http://search.meta.ua/search.asp?q='.$search;
+        $adress = 'http://search.meta.ua/search.asp?q=dog';
         $ch = curl_init($adress);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -40,8 +41,9 @@ class SearchClass
         curl_close($ch);
         if ($page !== false)
         {
-            $this->pageProp = $page;
-            return true;
+//            $this->pageProp = $page;
+//            return true;
+            return $page;
         }
         else
         {
@@ -53,8 +55,21 @@ class SearchClass
     {
         $doc = new DOMDocument();
         @$doc->loadHTML($this->pageProp);
-//        echo $doc->saveHTML();
-        $doc->getElementsByTagName(tg);
+
+//        $tags = $doc->getElementsByTagName('table');
+//        foreach ($tags as $a){
+//            if($a->hasAttribute('class'))
+//            {
+//                echo $a->getAttribute('class')."<br>";
+//
+//            }
+//        }
+
+    }
+
+    public function toFile()
+    {
+        file_put_contents('file', $this->pageProp);
     }
 
 
