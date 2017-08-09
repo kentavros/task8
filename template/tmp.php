@@ -38,12 +38,15 @@
 <div style="margin-left:150px; ">
 
 <?php
+if (is_array($arr))
+
+{
         foreach ($arr as $k=>$v)
         {
            
             echo '<p><a href="'.$v['link'].'">'. $v['name'] . '</a><br>'.$v['discrip'].'</p>';
         }
-
+}
 ?>
 </div>
 <footer class="modal-footer navbar-inverse">
