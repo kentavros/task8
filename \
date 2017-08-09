@@ -52,31 +52,22 @@ class SearchClass
     }
 
     public function parsingHtml()
-    {    $this->pageProp;     
+    {   echo $this->pageProp;     
         $doc = new DOMDocument();
         @$doc->loadHTML($this->pageProp);
     
         $xpath = new DOMXPath($doc);
-        $nodes = $xpath->query("//*[contains(@class, 'srg')]");
-      //  var_dump($nodes->item(0)->firstChild->getAttribute('class'));
+        $nodes = $xpath->query("//*[contains(@class, 'rc')]");
+        var_dump($nodes);
         $arrData = array();
         $i=0;
-       // foreach($nodes as $nod)
-       // {
-         //   $arrData[$i] =[
-               // 'name'=>$nod->firstChild->firstChild->firstChild->nodeValue,
-        //        ];
-            
-            
-            // $arrData[$i]=['name'=>$nod->firstChild->firstChild->nodeValue,
-           //             'link'=>$nod->firstChild->firstChild->getAttribute('href'),
-           //               'shortText'=>$nod->getElementsByTagName('span')->item(1)->nodeValue];
-            //            $i++;
-       // }
-        var_dump($this->pageProp);
-echo "<pre>";
-        var_dump($nodes->item(0)->childNodes->item(0));
-        echo "</pre>";
+        foreach($nodes as $nod)
+        {
+           $arrData[$i]=['name'=>$nod->firstChild->firstChild->nodeValue,
+                        'link'=>$nod->firstChild->firstChild->getAttribute('href'),
+                          'shortText'=>$nod->getElementsByTagName('span')->item(1)->nodeValue];
+                        $i++;
+        }
 
         return $arrData;
 

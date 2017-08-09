@@ -3,9 +3,13 @@ include ('libs/SearchClass.php');
 
 
 $page = new SearchClass();
-//echo $page->getWebPage();
+$page->getWebPage();
+echo "<br>";
+$page->parsingHtml();
+    
+//$page->getWebPage();
 //file_put_contents('file', $page->getWebPage());
-
+//var_dump($page->getWebPage());
 
 //
 //if (isset($_POST['search']))
