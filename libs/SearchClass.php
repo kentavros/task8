@@ -12,8 +12,10 @@ class SearchClass
     }
 
 
-    public function getWebPage() //DOBAVIT PARAM!!!!!!!!
+    public function getWebPage($search) //DOBAVIT PARAM!!!!!!!!
     {
+        
+
         $headers = array(
             'authority:www.google.com.ua',
             'method:GET',
@@ -29,10 +31,8 @@ class SearchClass
 
         );
 
-       $adress = 'https://www.google.com.ua/search?q=dog';
-//       $adress = 'https://www.google.com.ua/search?...'.$search;
-//        $adress = 'http://search.meta.ua/search.asp?q='.$search;
-//        $adress = 'http://search.meta.ua/search.asp?q=dog';
+        $adress = 'https://www.google.com.ua/search?q='.$search;
+//      $adress = 'http://search.meta.ua/search.asp?q=dog';
         $ch = curl_init($adress);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -60,36 +60,19 @@ class SearchClass
         $nodes = $xpath->query("//*[contains(@class, 'srg')]");
       //  var_dump($nodes->item(0)->firstChild->getAttribute('class'));
         $arrData = array();
-        $i=0;
-       // foreach($nodes as $nod)
-       // {
-         //   $arrData[$i] =[
-               // 'name'=>$nod->firstChild->firstChild->firstChild->nodeValue,
-        //        ];
-            
-            
-            // $arrData[$i]=['name'=>$nod->firstChild->firstChild->nodeValue,
-           //             'link'=>$nod->firstChild->firstChild->getAttribute('href'),
-           //               'shortText'=>$nod->getElementsByTagName('span')->item(1)->nodeValue];
-            //            $i++;
-       // }
-        var_dump($this->pageProp);
-echo "<pre>";
-        var_dump($nodes->item(0)->childNodes->item(0));
-        echo "</pre>";
-
-        return $arrData;
-
-
-  //      $tags = $doc->getElementsByTagName('');
- //       foreach ($tags as $a){
- //           if($a->hasAttribute('class'))
- //           {
- //               echo $a->getAttribute('class')."<br>";
-//
- //           }
- //       }
-
+        
+        for($i=0; $i< $nodes->item(0)->childNodes->length; $i++) 
+        {
+          
+         $arrData[$i] =[
+        'name'=>$nodes->item(0)->childNodes->item($i)->firstChild->nextSibling->firstChild->firstChild->firstChild->nodeValue,
+         'link'=>$nodes->item(0)->childNodes->item($i)->firstChild->nextSibling->firstChild->firstChild->firstChild->getAttribute('href'),
+        'discrip'=>$nodes->item(0)->childNodes->item($i)->firstChild->nextSibling->firstChild->firstChild->nextSibling->firstChild->firstChild->nextSibling->nodeValue 
+                ];
+          
+         
+        }
+          return $arrData;
    }
 
     public function toFile()

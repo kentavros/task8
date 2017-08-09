@@ -35,7 +35,17 @@
 
 
 
+<div style="margin-left:150px; ">
 
+<?php
+        foreach ($arr as $k=>$v)
+        {
+           
+            echo '<p><a href="'.$v['link'].'">'. $v['name'] . '</a><br>'.$v['discrip'].'</p>';
+        }
+
+?>
+</div>
 <footer class="modal-footer navbar-inverse">
     <div class="container">
         <a class="navbar-brand" style="float: right" href="#">Task 8 - end</a>
